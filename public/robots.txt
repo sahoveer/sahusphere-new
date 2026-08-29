@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://sahusphere.com/sitemap.xml
+
+# Disallow admin areas (if any in future)
+Disallow: /admin/
+Disallow: /api/
+
+# Allow crawling of all public content
+Allow: /image-to-pdf
+Allow: /about
+Allow: /contact
+Allow: /privacy-policy
+Allow: /terms
+Allow: /cookie-policy
+Allow: /dmca
+Allow: /disclaimer
+Allow: /sitemap
