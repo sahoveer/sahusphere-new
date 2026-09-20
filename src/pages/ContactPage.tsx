@@ -15,10 +15,26 @@ export default function ContactPage() {
     }
     setError('');
     setLoading(true);
-    // Simulate form submission
-    await new Promise(r => setTimeout(r, 1500));
-    setLoading(false);
-    setSent(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      setSent(true);
+    } catch (err) {
+      setError('An error occurred while sending your message. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
