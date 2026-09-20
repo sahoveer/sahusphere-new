@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import ImageToPDF from './pages/ImageToPDF';
@@ -14,9 +14,8 @@ import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
+    <Routes>
+      <Route
           path="/"
           element={
             <Layout>
@@ -104,7 +103,6 @@ export default function App() {
             </Layout>
           }
         />
-      </Routes>
-    </BrowserRouter>
+    </Routes>
   );
 }
