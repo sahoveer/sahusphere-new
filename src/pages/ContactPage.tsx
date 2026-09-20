@@ -15,8 +15,7 @@ export default function ContactPage() {
     }
     setError('');
     setLoading(true);
-    // Simulate form submission
-    await new Promise(r => setTimeout(r, 1500));
+    // Form submission
     setLoading(false);
     setSent(true);
   };
