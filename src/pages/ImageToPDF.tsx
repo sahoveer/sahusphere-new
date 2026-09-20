@@ -256,7 +256,7 @@ export default function ImageToPDF() {
       setProgress(95);
       setStatus('Finalizing PDF...');
 
-      await new Promise(r => setTimeout(r, 300));
+
 
       const blob = pdf.output('blob');
       setPdfBlob(blob);
