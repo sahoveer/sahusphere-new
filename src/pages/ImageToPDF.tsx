@@ -331,6 +331,7 @@ export default function ImageToPDF() {
         <div className="flex justify-end mb-4">
           <button
             onClick={() => setDarkMode(!darkMode)}
+            aria-label={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-manrope font-medium border transition-all ${darkMode ? 'bg-gray-800 border-gray-700 text-gray-300' : 'bg-white border-gray-200 text-gray-600 hover:border-blue-300'}`}
           >
             {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
@@ -464,6 +465,7 @@ export default function ImageToPDF() {
                           <div className="flex gap-2">
                             <button
                               onClick={(e) => { e.stopPropagation(); rotateImage(img.id); }}
+                              aria-label="Rotate image"
                               className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors tooltip"
                               data-tip="Rotate"
                             >
@@ -471,6 +473,7 @@ export default function ImageToPDF() {
                             </button>
                             <button
                               onClick={(e) => { e.stopPropagation(); removeImage(img.id); }}
+                              aria-label="Remove image"
                               className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center text-white hover:bg-red-600 transition-colors tooltip"
                               data-tip="Remove"
                             >
@@ -478,10 +481,10 @@ export default function ImageToPDF() {
                             </button>
                           </div>
                           <div className="flex gap-1">
-                            <button onClick={(e) => { e.stopPropagation(); moveUp(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                            <button onClick={(e) => { e.stopPropagation(); moveUp(index); }} aria-label="Move up" data-tip="Move up" className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors tooltip">
                               <ChevronUp className="w-3.5 h-3.5" />
                             </button>
-                            <button onClick={(e) => { e.stopPropagation(); moveDown(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                            <button onClick={(e) => { e.stopPropagation(); moveDown(index); }} aria-label="Move down" data-tip="Move down" className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors tooltip">
                               <ChevronDown className="w-3.5 h-3.5" />
                             </button>
                           </div>
