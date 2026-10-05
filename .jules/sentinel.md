@@ -1,0 +1,4 @@
+## 2025-01-28 - [Insecure Randomness in ID Generation]
+**Vulnerability:** Found `Math.random().toString(36).substr(2, 9)` being used to generate unique IDs for uploaded image files (`src/pages/ImageToPDF.tsx`).
+**Learning:** `Math.random()` relies on a predictable pseudo-random number generator (PRNG). While the risk might seem low for client-side temporary file IDs, using weak randomness for identifier generation is a bad security practice and can lead to collision issues or predictable state. This indicates a gap in consistently applying secure randomness primitives across the application.
+**Prevention:** Always use `crypto.randomUUID()` when generating unique identifiers in modern browser environments, or use `crypto.getRandomValues()` if other specific random byte lengths are needed. Never use `Math.random()` for anything security-related, including ID generation.
