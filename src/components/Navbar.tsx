@@ -97,6 +97,9 @@ export default function Navbar() {
             <div className="relative">
               <button
                 onClick={() => setMoreOpen(!moreOpen)}
+                aria-expanded={moreOpen}
+                aria-haspopup="true"
+                aria-controls="more-dropdown-menu"
                 className={`flex items-center gap-1 nav-link font-manrope text-sm transition-colors duration-200 ${
                   scrolled || location.pathname !== '/'
                     ? 'text-gray-600 hover:text-blue-600'
@@ -106,7 +109,7 @@ export default function Navbar() {
                 More <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${moreOpen ? 'rotate-180' : ''}`} />
               </button>
               {moreOpen && (
-                <div className="absolute top-full right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
+                <div id="more-dropdown-menu" className="absolute top-full right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
                   {moreLinks.map((link) => (
                     <Link
                       key={link.path}
@@ -131,6 +134,9 @@ export default function Navbar() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
             className={`lg:hidden p-2 rounded-xl transition-colors ${
               scrolled || location.pathname !== '/' ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/10'
             }`}
@@ -142,7 +148,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden mobile-menu border-t border-gray-100">
+        <div id="mobile-menu" className="lg:hidden mobile-menu border-t border-gray-100">
           <div className="max-w-7xl mx-auto px-4 py-6 space-y-1">
             {navLinks.map((link) => (
               <Link
