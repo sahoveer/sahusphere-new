@@ -71,7 +71,8 @@ export default function ImageToPDF() {
     const remaining = 20 - images.length;
     const toAdd = acceptedFiles.slice(0, remaining);
     const newImages: ImageFile[] = toAdd.map(file => ({
-      id: Math.random().toString(36).substr(2, 9),
+      // Security enhancement: Use crypto.randomUUID() instead of insecure Math.random()
+      id: crypto.randomUUID(),
       file,
       preview: URL.createObjectURL(file),
       name: file.name.replace(/\.[^.]+$/, ''),
