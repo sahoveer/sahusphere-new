@@ -1,0 +1,4 @@
+## 2024-03-24 - Insecure Randomness in React State IDs
+**Vulnerability:** The application was using `Math.random().toString(36).substr(2, 9)` to generate unique IDs for uploaded image files. This PRNG is not cryptographically secure and predictable.
+**Learning:** Even for seemingly non-critical IDs (like those used for React state lists and drag-and-drop mechanics), predictable identifiers can potentially be abused if the IDs are later sent to an API, used for session-like state, or if another vulnerability relies on guessing these IDs. It is best practice to consistently use secure random number generators across the codebase to prevent vulnerabilities.
+**Prevention:** Always use `crypto.randomUUID()` instead of `Math.random()` when generating unique identifiers to prevent insecure randomness vulnerabilities.
