@@ -463,6 +463,7 @@ export default function ImageToPDF() {
                         <div className="overlay gap-2 flex-col">
                           <div className="flex gap-2">
                             <button
+                              aria-label="Rotate"
                               onClick={(e) => { e.stopPropagation(); rotateImage(img.id); }}
                               className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors tooltip"
                               data-tip="Rotate"
@@ -470,6 +471,7 @@ export default function ImageToPDF() {
                               <RotateCw className="w-3.5 h-3.5" />
                             </button>
                             <button
+                              aria-label="Remove"
                               onClick={(e) => { e.stopPropagation(); removeImage(img.id); }}
                               className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center text-white hover:bg-red-600 transition-colors tooltip"
                               data-tip="Remove"
@@ -478,10 +480,10 @@ export default function ImageToPDF() {
                             </button>
                           </div>
                           <div className="flex gap-1">
-                            <button onClick={(e) => { e.stopPropagation(); moveUp(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                            <button aria-label="Move up" onClick={(e) => { e.stopPropagation(); moveUp(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors">
                               <ChevronUp className="w-3.5 h-3.5" />
                             </button>
-                            <button onClick={(e) => { e.stopPropagation(); moveDown(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                            <button aria-label="Move down" onClick={(e) => { e.stopPropagation(); moveDown(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors">
                               <ChevronDown className="w-3.5 h-3.5" />
                             </button>
                           </div>
@@ -609,6 +611,8 @@ export default function ImageToPDF() {
             {/* PDF Settings */}
             <div className={`card-premium p-5 ${darkMode ? 'bg-gray-900 border-gray-700' : ''}`}>
               <button
+                aria-expanded={showSettings}
+                aria-controls="pdf-settings-panel"
                 onClick={() => setShowSettings(!showSettings)}
                 className={`w-full flex items-center justify-between font-poppins font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}
               >
@@ -617,7 +621,7 @@ export default function ImageToPDF() {
               </button>
 
               {showSettings && (
-                <div className="mt-5 space-y-5">
+                <div id="pdf-settings-panel" className="mt-5 space-y-5">
                   {/* Page Size */}
                   <div>
                     <label className={`block text-xs font-manrope font-semibold uppercase tracking-wider mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -737,6 +741,8 @@ export default function ImageToPDF() {
                   <p className={`text-xs font-manrope ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Add page numbering</p>
                 </div>
                 <button
+                  role="switch"
+                  aria-checked={pageNumbers}
                   onClick={() => setPageNumbers(!pageNumbers)}
                   className={`relative w-11 h-6 rounded-full transition-colors ${pageNumbers ? 'bg-blue-600' : 'bg-gray-200'}`}
                 >
