@@ -466,6 +466,7 @@ export default function ImageToPDF() {
                               onClick={(e) => { e.stopPropagation(); rotateImage(img.id); }}
                               className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors tooltip"
                               data-tip="Rotate"
+                              aria-label="Rotate image"
                             >
                               <RotateCw className="w-3.5 h-3.5" />
                             </button>
@@ -473,15 +474,16 @@ export default function ImageToPDF() {
                               onClick={(e) => { e.stopPropagation(); removeImage(img.id); }}
                               className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center text-white hover:bg-red-600 transition-colors tooltip"
                               data-tip="Remove"
+                              aria-label="Remove image"
                             >
                               <X className="w-3.5 h-3.5" />
                             </button>
                           </div>
                           <div className="flex gap-1">
-                            <button onClick={(e) => { e.stopPropagation(); moveUp(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                            <button onClick={(e) => { e.stopPropagation(); moveUp(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors" aria-label="Move image up">
                               <ChevronUp className="w-3.5 h-3.5" />
                             </button>
-                            <button onClick={(e) => { e.stopPropagation(); moveDown(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                            <button onClick={(e) => { e.stopPropagation(); moveDown(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors" aria-label="Move image down">
                               <ChevronDown className="w-3.5 h-3.5" />
                             </button>
                           </div>
@@ -611,13 +613,16 @@ export default function ImageToPDF() {
               <button
                 onClick={() => setShowSettings(!showSettings)}
                 className={`w-full flex items-center justify-between font-poppins font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}
+                aria-expanded={showSettings}
+                aria-controls="pdf-settings-content"
+                aria-haspopup="true"
               >
                 <span>⚙️ PDF Settings</span>
                 <Settings className={`w-4 h-4 transition-transform ${showSettings ? 'rotate-90' : ''} text-blue-600`} />
               </button>
 
               {showSettings && (
-                <div className="mt-5 space-y-5">
+                <div id="pdf-settings-content" className="mt-5 space-y-5">
                   {/* Page Size */}
                   <div>
                     <label className={`block text-xs font-manrope font-semibold uppercase tracking-wider mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -733,11 +738,14 @@ export default function ImageToPDF() {
               {/* Page Numbers */}
               <div className={`flex items-center justify-between py-3 border-t ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
                 <div>
-                  <p className={`text-sm font-manrope font-medium ${darkMode ? 'text-white' : 'text-gray-800'}`}>Page Numbers</p>
+                  <p id="page-numbers-label" className={`text-sm font-manrope font-medium ${darkMode ? 'text-white' : 'text-gray-800'}`}>Page Numbers</p>
                   <p className={`text-xs font-manrope ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Add page numbering</p>
                 </div>
                 <button
                   onClick={() => setPageNumbers(!pageNumbers)}
+                  role="switch"
+                  aria-checked={pageNumbers}
+                  aria-labelledby="page-numbers-label"
                   className={`relative w-11 h-6 rounded-full transition-colors ${pageNumbers ? 'bg-blue-600' : 'bg-gray-200'}`}
                 >
                   <div className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${pageNumbers ? 'translate-x-5' : ''}`} />
