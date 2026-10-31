@@ -1,0 +1,4 @@
+## 2024-05-24 - Insecure Randomness in Image Identifiers
+**Vulnerability:** The application used `Math.random().toString(36).substr(2, 9)` to generate unique identifiers for images uploaded in `src/pages/ImageToPDF.tsx`.
+**Learning:** `Math.random()` does not provide cryptographically secure pseudorandom numbers, making the generated identifiers predictable. This insecure randomness vulnerability pattern is specific to this codebase's approach to generating identifiers.
+**Prevention:** Always use `crypto.randomUUID()` when generating unique identifiers for entities, objects, or UI components to prevent insecure randomness vulnerabilities.
