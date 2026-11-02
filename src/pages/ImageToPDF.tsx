@@ -466,6 +466,7 @@ export default function ImageToPDF() {
                               onClick={(e) => { e.stopPropagation(); rotateImage(img.id); }}
                               className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors tooltip"
                               data-tip="Rotate"
+                              aria-label="Rotate image"
                             >
                               <RotateCw className="w-3.5 h-3.5" />
                             </button>
@@ -473,15 +474,16 @@ export default function ImageToPDF() {
                               onClick={(e) => { e.stopPropagation(); removeImage(img.id); }}
                               className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center text-white hover:bg-red-600 transition-colors tooltip"
                               data-tip="Remove"
+                              aria-label="Remove image"
                             >
                               <X className="w-3.5 h-3.5" />
                             </button>
                           </div>
                           <div className="flex gap-1">
-                            <button onClick={(e) => { e.stopPropagation(); moveUp(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                            <button onClick={(e) => { e.stopPropagation(); moveUp(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors" aria-label="Move image up">
                               <ChevronUp className="w-3.5 h-3.5" />
                             </button>
-                            <button onClick={(e) => { e.stopPropagation(); moveDown(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                            <button onClick={(e) => { e.stopPropagation(); moveDown(index); }} className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center text-white hover:bg-white/30 transition-colors" aria-label="Move image down">
                               <ChevronDown className="w-3.5 h-3.5" />
                             </button>
                           </div>
