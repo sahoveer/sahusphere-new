@@ -610,14 +610,16 @@ export default function ImageToPDF() {
             <div className={`card-premium p-5 ${darkMode ? 'bg-gray-900 border-gray-700' : ''}`}>
               <button
                 onClick={() => setShowSettings(!showSettings)}
-                className={`w-full flex items-center justify-between font-poppins font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}
+                aria-expanded={showSettings}
+                aria-controls="pdf-settings-panel"
+                className={`w-full flex items-center justify-between font-poppins font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}
               >
                 <span>⚙️ PDF Settings</span>
                 <Settings className={`w-4 h-4 transition-transform ${showSettings ? 'rotate-90' : ''} text-blue-600`} />
               </button>
 
               {showSettings && (
-                <div className="mt-5 space-y-5">
+                <div id="pdf-settings-panel" className="mt-5 space-y-5">
                   {/* Page Size */}
                   <div>
                     <label className={`block text-xs font-manrope font-semibold uppercase tracking-wider mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -738,7 +740,10 @@ export default function ImageToPDF() {
                 </div>
                 <button
                   onClick={() => setPageNumbers(!pageNumbers)}
-                  className={`relative w-11 h-6 rounded-full transition-colors ${pageNumbers ? 'bg-blue-600' : 'bg-gray-200'}`}
+                  role="switch"
+                  aria-checked={pageNumbers}
+                  aria-label="Toggle page numbers"
+                  className={`relative w-11 h-6 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${pageNumbers ? 'bg-blue-600' : 'bg-gray-200'}`}
                 >
                   <div className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${pageNumbers ? 'translate-x-5' : ''}`} />
                 </button>
